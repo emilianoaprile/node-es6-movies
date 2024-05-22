@@ -1,3 +1,13 @@
+const media = [
+    { title: 'Jaws', year: 1975, genre: 'Drama', rating: 8, type: 'Film' },
+    { title: 'Breaking Bad', year: 2008, genre: 'Crime', rating: 9.5, type: 'Serie Tv', seasons: 5 },
+    { title: 'The Godfather', year: 1972, genre: 'Crime', rating: 9.2, type: 'Film' },
+    { title: 'One Piece', year: 1999, genre: 'Anime', rating: 8.9, type: 'Serie Tv', seasons: 20 },
+    { title: 'Interstellar', year: 2014, genre: 'Sci-fi', rating: 8.7, type: 'Film' },
+    { title: 'Dragon Ball Z', year: 1986, genre: 'Anime', rating: 9.3, type: 'Serie Tv', seasons: 5 }
+]
+
+
 // creo la classe Movie 
 class Movie {
     constructor(title, year, genre, rating, type) {
@@ -27,14 +37,15 @@ class TvSeries extends Movie {
     }
 }
 
-// creazione dell'Array di oggetti Movie e Series
-const mediaArray = [
-    new Movie ('Jaws', 1975, 'Drama', 8, 'Film'),
-    new TvSeries ('Breaking Bad', 2008, 'Crime', 9.5, 'Serie Tv', 5),
-    new Movie ('The Godfather', 1972, 'Crime', 9.2, 'Film'),
-    new TvSeries ('One Piece', 1999, 'Anime', 8.9, 'Serie Tv', 20),
-    new Movie ('Interstellar', 2014, 'Sci-fi', 8.7, 'Film'),
-    new TvSeries ('Dragon Ball Z', 1986, 'Anime', 9.3, 'Serie Tv', 5)
-]
+// creo un array di istanze con map
+const mediaArray = media.map((element) => {
+    console.log(element.type)
+    if(element.type === 'Film') {
+        return new Movie(element.title, element.year, element.genre, element.rating, element.type)
+    }
+    if(element.type === 'Serie Tv') {
+        return new TvSeries(element.title, element.year, element.genre, element.rating, element.type, element.seasons)
+    }
+})
 
 console.log(mediaArray)
