@@ -40,12 +40,40 @@ class TvSeries extends Movie {
 // creo un array di istanze con map
 const mediaArray = media.map((element) => {
     console.log(element.type)
-    if(element.type === 'Film') {
+    if (element.type === 'Film') {
         return new Movie(element.title, element.year, element.genre, element.rating, element.type)
     }
-    if(element.type === 'Serie Tv') {
+    if (element.type === 'Serie Tv') {
         return new TvSeries(element.title, element.year, element.genre, element.rating, element.type, element.seasons)
     }
 })
 
 console.log(mediaArray)
+
+function findAverageRating(filmList, genre) {
+    // dichiaro varibili per la somma dei voti e il numero di film con lo stesso genere
+    let sum = 0
+    let counter = 0
+
+    filmList.forEach(film => {
+        console.log(film)
+        if(film.genre === genre && film.type === 'Film') {
+            sum += film.rating
+            counter++
+        }
+    });
+
+    if(counter === 0) {
+        return `Nessun film del genere ${genre}`
+    }
+    // calcolo la media
+    const average = sum / counter
+
+    return average
+}
+
+const averageRating = findAverageRating(mediaArray, 'Drama')
+console.log(averageRating)
+
+
+
