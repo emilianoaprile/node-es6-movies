@@ -49,47 +49,34 @@ const mediaArray = media.map((element) => {
 })
 console.log(mediaArray)
 
-// funzione che restituisce la media dei voti di tutti i film per un determinato genere. Prevedere un argomento per la lista dei film ed uno per il genere.
 
-function findAverageRating(filmList, genre) {
+function findAverageRating(filmList) {
     // dichiaro varibili per la somma dei voti e il numero di film con lo stesso genere
     let sum = 0
     let counter = 0
 
     filmList.forEach(film => {
         console.log(film)
-        if(film.genre === genre && film.type === 'Film') {
-            sum += film.rating
-            counter++
-        }
+        sum += film.rating
+        counter++
     });
 
-    if(counter === 0) {
-        return `Nessun film del genere ${genre}`
-    }
     // calcolo la media
     const average = sum / counter
 
-    return average
+    return average.toFixed(2)
 }
-const averageRating = findAverageRating(mediaArray, 'Drama')
-console.log(averageRating)
+const averageRating = findAverageRating(mediaArray)
+console.log('La media dei voti è:', averageRating)
 
 
-// funzione che filtra i film in base ad un genere passato come argomento e ne ritorni un array con all'interno il risultato della funzione toString() di ogni film.
-
-function filterFilmBy(genre, filmList) {
-    // filtro i film che che hanno proprità genre e che sono di tipo film
-    const filteredFilm = filmList.filter(film => {
-        return film.genre === genre && film.type === 'Film'
-    })
-    // mappo l'array filtrato e per ogni film utilizzo il metodo toString per vedere i dettagli
-    const filmDetails = filteredFilm.map(film => film.toString())
-
+function filterFilm(filmList) {
+    // mappo l'array e utilizzo il metodo toString per vedere i dettagli
+    const filmDetails = filmList.map(film => film.toString())
     return filmDetails
 }
 
-const filmDetailsByGenre = filterFilmBy('Drama', mediaArray)
-console.log(filmDetailsByGenre)
+const filmDetails = filterFilm(mediaArray)
+console.log('Dettagli dei film:', filmDetails)
 
 
