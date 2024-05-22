@@ -80,3 +80,19 @@ const filmDetails = filterFilm(mediaArray)
 console.log('Dettagli dei film:', filmDetails)
 
 
+function getFilmGenre(filmList) {
+    const genres = []
+
+    filmList.forEach((film => {
+        console.log(film.genre)
+        // ad ogni iterazione push il genere del film se non è già stato inserito
+        if(!genres.includes(film.genre)) {
+            genres.push(film.genre)
+        }
+    }))
+
+    return genres
+}
+
+const filmGenres = getFilmGenre(mediaArray)
+console.log('Lista di film senza ripetizione del genere:', filmGenres)
